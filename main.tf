@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 0.14.0"
+  required_version = "~> 1.1.0"
 
   /*
   backend "s3" {
@@ -18,9 +18,8 @@ terraform {
  * aws configure --profile terra
  */
 provider "aws" {
-  region                  = "ap-northeast-2"
-  shared_credentials_file = "~/.aws/credentials"
-  profile                 = "terra"
+  profile = "terra"
+  region  = "ap-northeast-2"
 }
 
 module "vpc" {
@@ -33,9 +32,9 @@ module "vpc" {
 module "elb" {
   source = "./modules/elb"
 
-  vpc_id          = module.vpc.vpc_id
-  app_nm          = module.devapp-base.app_nm
-  pub_sn_ids      = module.devapp-base.pub_sn_ids
+  vpc_id     = module.vpc.vpc_id
+  app_nm     = module.devapp-base.app_nm
+  pub_sn_ids = module.devapp-base.pub_sn_ids
 
   extra_tags      = local.extra_tags
   resrc_prefix_nm = local.resrc_prefix_nm
@@ -51,7 +50,7 @@ module "iam" {
 module "devapp-base" {
   source = "./services/devapp-base"
 
-  vpc_id          = module.vpc.vpc_id
+  vpc_id = module.vpc.vpc_id
 
   project_name    = var.project_name
   extra_tags      = local.extra_tags

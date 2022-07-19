@@ -5,8 +5,6 @@ resource "aws_vpc" "vpc" {
   enable_dns_support    = true
   instance_tenancy      = "default"
 
-  tags = merge(map(
-    "Name", "${var.resrc_prefix_nm}-vpc"
-  ), var.extra_tags)
+  tags = merge({ Name = "${var.resrc_prefix_nm}-vpc"}, var.extra_tags)
 
 }

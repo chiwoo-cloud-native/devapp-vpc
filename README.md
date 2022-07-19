@@ -85,11 +85,8 @@ Default output format [None]: json
 
 ```bash
 
-mkdir -p ~/workspace
-cd ~/workspace
-
 git clone https://github.com/osssample/devapp-vpc.git
-cd ~/workspace/devapp-vpc
+cd devapp-vpc
 
 terraform init
 ```
